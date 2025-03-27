@@ -1,28 +1,14 @@
 import Image from "next/image";
-import Logo from "../assets/images/logo.png";
-import Icon_country from "../assets/images/icon_country.png";
-import Arrow from "../assets/images/skewarrow.png";
-import CaretDown from "../assets/images/CaretDown.png";
 import pen from "../assets/images/pen.png";
 import notebook from "../assets/images/notebook.png";
-import blog from "../assets/images/blog.png";
-import ArrowRight from "../assets/images/ArrowRight.png";
-import Clock from "../assets/images/Clock.png";
-import CalendarBlank from "../assets/images/CalendarBlank.png";
 import MagnifyingGlass from "../assets/images/MagnifyingGlass.png";
-import Computer from "../assets/images/Computer.png";
 import Vector from "../assets/images/Vector.png";
-import Robo from "../assets/images/Robo.png";
-import Group from "../assets/images/Group.png";
 import Group2 from "../assets/images/Group2.png";
-import Mrplogo from "../assets/images/mrplogo.svg";
 import Pagination from "@/components/Pagination";
-import Header from "@/components/Header";
-import Link from "next/link";
 import Post from "@/components/Post";
 import Advertisement from "@/components/Advertisement";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import { postType } from "@/components/Post/Post";
+import { posts } from "@/mocks";
 
 export default function Home() {
   const breadcrumbItems = [
@@ -31,53 +17,10 @@ export default function Home() {
     { label: "Blog", href: "/blog" },
   ];
 
-  const posts: postType[] = [
-    {
-      topic: "Quản lý sản xuất",
-      title: "Tại sao BOM quan trọng trong quản lý sản xuất?",
-      image: "",
-      date: "1/1/2020",
-      timeToRead: 10,
-    },
-    {
-      topic: "Quản lý sản xuất A",
-      title: "Tại sao BOM quan trọng trong quản lý sản xuất A?",
-      image: "",
-      date: "1/1/2021",
-      timeToRead: 14,
-    },
-    {
-      topic: "Quản lý sản xuất B",
-      title: "Tại sao BOM quan trọng trong quản lý sản xuất B?",
-      image: "",
-      date: "1/1/2022",
-      timeToRead: 15,
-    },
-    {
-      topic: "Quản lý sản xuất C",
-      title: "Tại sao BOM quan trọng trong quản lý sản xuất C?",
-      image: "",
-      date: "1/1/2024",
-      timeToRead: 16,
-    },
-    {
-      topic: "Quản lý sản xuất",
-      title: "Tại sao BOM quan trọng trong quản lý sản xuất D?",
-      image: "",
-      date: "1/1/2025",
-      timeToRead: 17,
-    },
-    {
-      topic: "Quản lý sản xuất D",
-      title: "Tại sao BOM quan trọng trong quản lý sản xuất E?",
-      image: "",
-      date: "1/1/2023",
-      timeToRead: 18,
-    },
-  ];
+  
   return (
     <div className="relative px-2 md:px-2">
-      <Header />
+      {/* <Header /> */}
       <div className="flex justify-center my-4 lg:my-[64px]">
         <Breadcrumb items={breadcrumbItems} />
       </div>
@@ -126,14 +69,14 @@ export default function Home() {
                   "linear-gradient(77.74deg, #013DA0 11.85%, #0142A9 20.65%, #0148B3 29.45%, #024EBC 38.25%, #0254C5 47.05%, #025ACE 55.84%, #0261D7 64.64%, #0267E1 73.44%, #036EEA 82.24%, #0375F3 91.04%)",
               }}
             >
-              <div className="p-6 flex-[100%] sm:flex-[70%] lg:flex-1">
+              <div className="pt-5 pl-5 flex-[100%] sm:w-[50%] sm:flex-[50%] lg:pt-0 lg:flex-1">
                 <h2 className="text-4xl font-bold text-justify mr-12">
                   Gia nhập cộng đồng FMRP – Kết nối, chia sẻ, cùng phát triển!
                 </h2>
                 <button className="mt-8 border-2 border-white text-white rounded-full px-6 py-3 text-lg flex items-center justify-center gap-2 transition hover:bg-white hover:text-blue-600">
                   <span>Tham Gia Ngay</span>
                   <Image
-                    src={Vector} // Replace with actual image path
+                    src={Vector} 
                     alt="Laptop and Mobile UI"
                     className="ml-10"
                   />
@@ -142,7 +85,7 @@ export default function Home() {
               <Image
                 src={Group2}
                 alt="Banner"
-                className="flex-[100%] sm:flex-[30%] lg:flex-1 h-full mr-6"
+                className="flex-[100%] sm:flex-[50%] lg:flex-1 h-full mr-6"
               />
             </div>
             <div className="grid md:grid-cols-2 gap-6">
