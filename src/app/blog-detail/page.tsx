@@ -6,6 +6,7 @@ import X from "../../assets/images/X.png";
 import zalo from "../../assets/images/zalo.png";
 import socialicon from "../../assets/images/socialicon.png";
 import CaretUp from "../../assets/images/CaretUp.png";
+import CaretDown from "../../assets/images/CaretDown.png";
 import linkedin from "../../assets/images/linkedin.png";
 import image from "../../assets/images/Body/image.png";
 import image1 from "../../assets/images/Body/image1.png";
@@ -30,6 +31,7 @@ export default function BlogDetail() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [author, setAuthor] = useState<postType>();
+  const [isOpen, setIsOpen] = useState<Boolean>();
 
   const breadcrumbItems = [
     { label: "Trang chủ", href: "/" },
@@ -487,19 +489,18 @@ export default function BlogDetail() {
           <div className="hidden lg:block lg:col-span-3">
             <div className="py-4 w-full max-w-md ">
               {/* Header */}
-              <div className="flex justify-between items-center cursor-pointer">
+              <div className="flex justify-between items-center cursor-pointer" onClick={()=>setIsOpen(!isOpen)}>
                 <h2 className="font-extrabold text-2xl">Nội Dung Bài Viết</h2>
-                {/* {isOpen ? (
-                  <ChevronUpIcon className="w-5 h-5 text-gray-500" />
+                {isOpen ? (
+                  <Image src={CaretUp} alt="" className="h-4 w-4" />
                 ) : (
-                  <ChevronDownIcon className="w-5 h-5 text-gray-500" />
-                )} */}
-                <Image src={CaretUp} alt="" className="h-4 w-4" />
+                  <Image src={CaretDown} alt="" className="h-4 w-4" />
+                )}
               </div>
 
               {/* TOC List */}
 
-              <ul className="mt-3 text-[#33404a] space-y-1 font-medium text-lg">
+              <ul className={`mt-3 text-[#33404a] space-y-1 font-medium text-lg overflow-hidden transition${isOpen? ' max-h-0': ''}`}>
                 <li className="text-[#15AA7A] font-semibold">
                   <a href="#1">1. Quy trình 5S là gì?</a>
                 </li>
