@@ -20,7 +20,7 @@ import Advertisement from "@/components/Advertisement";
 import Vote from "./elements/Vote";
 import { useSearchParams } from "next/navigation";
 import { posts, postType } from "@/mocks";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export type breadcrumbType = {
   label: string;
@@ -28,9 +28,9 @@ export type breadcrumbType = {
 };
 
 export default function BlogDetail() {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-  const [author, setAuthor] = useState<postType>();
+  // const searchParams = useSearchParams();
+  // const id = searchParams.get("id");
+  // const [author, setAuthor] = useState<postType>();
   const [isOpen, setIsOpen] = useState<Boolean>();
 
   const breadcrumbItems = [
@@ -40,9 +40,9 @@ export default function BlogDetail() {
     { label: "Quản Lý Sản Xuất", href: "/" },
   ];
 
-  useEffect(() => {
-    setAuthor(posts.find((item) => item.id == id));
-  }, [id]);
+  // useEffect(() => {
+  //   setAuthor(posts.find((item) => item.id == id));
+  // }, [id]);
 
   const socialIcons = [zalo, facebook, X, linkedin, socialicon];
   return (
@@ -75,11 +75,9 @@ export default function BlogDetail() {
             </h1>
 
             <div className="mb-5 mt-1">
-              <AuthorInfo
-                author={author?.author || ""}
-                readingTime={author?.timeToRead || 0}
-                date={author?.date || ""}
-              ></AuthorInfo>
+              <Suspense>
+                <AuthorInfo></AuthorInfo>
+              </Suspense>
             </div>
 
             {/* main */}
@@ -489,7 +487,10 @@ export default function BlogDetail() {
           <div className="hidden lg:block lg:col-span-3">
             <div className="py-4 w-full max-w-md ">
               {/* Header */}
-              <div className="flex justify-between items-center cursor-pointer" onClick={()=>setIsOpen(!isOpen)}>
+              <div
+                className="flex justify-between items-center cursor-pointer"
+                onClick={() => setIsOpen(!isOpen)}
+              >
                 <h2 className="font-extrabold text-2xl">Nội Dung Bài Viết</h2>
                 {isOpen ? (
                   <Image src={CaretUp} alt="" className="h-4 w-4" />
@@ -500,7 +501,11 @@ export default function BlogDetail() {
 
               {/* TOC List */}
 
-              <ul className={`mt-3 text-[#33404a] space-y-1 font-medium text-lg overflow-hidden transition${isOpen? ' max-h-0': ''}`}>
+              <ul
+                className={`mt-3 text-[#33404a] space-y-1 font-medium text-lg overflow-hidden transition${
+                  isOpen ? " max-h-0" : ""
+                }`}
+              >
                 <li className="text-[#15AA7A] font-semibold">
                   <a href="#1">1. Quy trình 5S là gì?</a>
                 </li>

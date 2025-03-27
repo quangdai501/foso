@@ -1,18 +1,25 @@
+"use client";
 import Image from "next/image";
 import CalendarBlank from "../../../../assets/images/CalendarBlank.png";
 import Clock from "../../../../assets/images/Clock.png";
 import Author from "../../../../assets/images/author.png";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { posts, postType } from "@/mocks";
 export type AuthorInfoType = {
   author: string;
   date: string;
   readingTime: number;
 };
 
-export default function AuthorInfo({
-  author,
-  date,
-  readingTime,
-}: AuthorInfoType) {
+export default function AuthorInfo({}) {
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+  const [author, setAuthor] = useState<postType>();
+  useEffect(() => {
+    setAuthor(posts.find((item) => item.id == id));
+  }, [id]);
+
   return (
     <div className="flex items-center space-x-6 text-gray-600 text-sm">
       {/* Author Info */}
@@ -26,7 +33,7 @@ export default function AuthorInfo({
         </span>
         <div className="ml-auto">
           <span className="text-gray-400">Tác giả</span>
-          <p className="font-bold text-black">{author}</p>
+          <p className="font-bold text-black">{author?.author}</p>
         </div>
       </div>
 
@@ -34,12 +41,12 @@ export default function AuthorInfo({
         {/* Date */}
         <div className="flex items-center space-x-1 border-r-[1px] border-r-[#d9e1e7] pr-5">
           <Image src={CalendarBlank} alt="Author Logo" className="w-6 h-6" />
-          <span>Cập nhật vào: {date}</span>
+          <span>Cập nhật vào: {author?.date}</span>
         </div>
         {/* Reading Time */}
         <div className="flex items-center space-x-1 pl-5">
           <Image src={Clock} alt="Author Logo" className="w-6 h-6" />
-          <span>{readingTime} phút đọc</span>
+          <span>{author?.timeToRead} phút đọc</span>
         </div>
       </div>
     </div>
